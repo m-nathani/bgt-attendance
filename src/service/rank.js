@@ -1,5 +1,4 @@
 import models from '../../models'
-import rank from '../route/rank';
 
 export const getRanks = () => {
   return models.Rank.findAll().then(ranks => ranks)

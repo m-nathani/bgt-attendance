@@ -13,9 +13,8 @@ module.exports = {
         allowNull: false,
       },
       type: {
-        type:   Sequelize.ENUM,
-        values: ['Guard', 'Scout', 'Shaheen'],
-        isIn: [['Guard', 'Scout', 'Shaheen']],   // check the value is one of these
+        type: Sequelize.ENUM('Guard', 'Scout', 'Shaheen'),
+        allowNull: false,
       },
       phone: {
         type: Sequelize.STRING,
@@ -31,11 +30,7 @@ module.exports = {
       },
       email: {
         type: Sequelize.STRING,
-        unique: true,
         allowNull: false,
-        validate: {
-            isEmail: true
-        }
       },
       createdAt: {
         allowNull: false,

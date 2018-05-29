@@ -1,12 +1,50 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   var Member = sequelize.define('Member', {
-    name: DataTypes.STRING,
-    type: DataTypes.STRING,
-    phone: DataTypes.STRING,
-    its: DataTypes.STRING,
-    status: DataTypes.BOOLEAN,
-    email: DataTypes.STRING
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+      }
+    },
+    type: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        isIn: [['Guard', 'Scout', 'Shaheen']], // check the value is one of these
+      }
+    },
+    phone: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        notEmpty: true,
+      }
+    },
+    its: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+      validate: {
+        notEmpty: true,
+      }
+    },
+    status: {
+      type: DataTypes.BOOLEAN,
+      allowNull: false,
+      defaultValue: true,
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        notEmpty: true,
+        isEmail: true
+      }
+    }
   }, {});
 
   Member.associate = function(models) {
